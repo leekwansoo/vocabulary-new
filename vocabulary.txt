@@ -1,0 +1,243 @@
+Important | Having great significance or value | It's important to study every day for better results. | general
+Beautiful | Pleasing to look at; attractive | The sunset was beautiful over the calm lake. | general
+Friendly | Kind and pleasant to others | The teacher was very friendly to all new students. | general
+Helpful | Giving or ready to give help | My neighbor is always helpful when I need assistance. | general
+Creative | Having the ability to make new things | She is very creative with her art projects. | general
+Careful | Taking care to avoid danger or mistakes | Be careful when crossing the busy street. | general
+Popular | Liked by many people | Pizza is a popular food choice among teenagers. | general
+Modern | Relating to the present time | The modern technology makes our lives easier. | general
+Simple | Easy to understand or do | This recipe is simple and quick to make. | general
+Natural | Existing in nature, not made by humans | I prefer natural foods over processed ones. | general
+Special | Better or more important than usual | Today is a special day for our family. | general
+Perfect | Having no mistakes or faults | The weather is perfect for a picnic today. | general
+Honest | Telling the truth; not lying | An honest person always tells the truth. | general
+Generous | Willing to give more than necessary | My grandfather was generous with his time and money. | general
+Patient | Able to wait calmly | Good teachers are patient with slow learners. | general
+Confident | Feeling sure about your abilities | She felt confident about passing the exam. | general
+Curious | Wanting to know or learn about things | Children are naturally curious about the world. | general
+Organized | Arranged in a neat and logical way | Keep your desk organized for better productivity. | general
+Relaxed | Free from tension and anxiety | I feel relaxed when I listen to music. | general
+Successful | Achieving desired results | Hard work leads to successful outcomes. | general
+성남 탄천 | 성남의 중심을 통과하는 개천 | 아린이가 탄천에서 할머니와 놀고 있어요 | general
+일본 혼슈 | 일본의 4 개 큰섬 가운데 중앙에 있는 가장 큰섬 | 일본 여행 | general
+Happy | Feeling joy and pleasure | Children are happy when they play with friends. | general
+Smart | Having intelligence and good judgment | Smart students ask questions to learn more. | general
+Strong | Having physical power | Exercise makes your muscles strong and healthy. | general
+Kind | Having a good and caring nature | Kind people help others without expecting rewards. | general
+Brave | Not afraid in dangerous situations | The brave firefighter saved the family from fire. | general
+Polite | Having good manners | Polite children say please and thank you. | general
+Funny | Causing laughter | The funny movie made everyone in theater laugh. | general
+Quick | Moving or happening fast | The quick rabbit ran away from the dog. | general
+Quiet | Making little or no noise | Please be quiet during the library study time. | general
+Fair | Treating everyone equally | The fair teacher gives everyone equal chances. | general
+Mommy at Jeju Island in 1970 | Beautiful young woman is staring at horizons from a ship | Beautiful woman | general
+Animal | A living creature that can move and eat | The zoo has many different animals from around the world. | science
+Plant | A living thing that grows in soil | Water the plant every morning to keep it healthy. | science
+Water | Clear liquid that falls as rain | Drink plenty of water to stay healthy. | science
+Energy | Power used to make things work | Solar panels collect energy from the sun. | science
+Nature | The physical world including plants and animals | Spending time in nature helps reduce stress. | science
+Weather | Conditions outside like rain or sunshine | Check the weather before planning outdoor activities. | science
+Climate | The usual weather in a place | The climate here is warm and sunny most of the year. | science
+Ocean | Very large area of salt water | The Pacific Ocean is the largest ocean on Earth. | science
+Forest | Large area covered with trees | Many wild animals live in the forest. | science
+Mountain | Very high area of land | We climbed the mountain to see the beautiful view. | science
+River | Large stream of water flowing to the sea | The river flows through the center of our city. | science
+Earth | The planet we live on | Earth is the only planet known to have life. | science
+Space | The area beyond Earth where stars exist | Astronauts travel to space in rockets. | science
+Science | Study of the natural world | Science helps us understand how things work. | science
+Health | Being free from illness | Exercise and good food are important for health. | science
+Medicine | Treatment used to cure illness | Take your medicine three times a day. | science
+Doctor | Person who treats sick people | Visit the doctor if you feel unwell. | science
+Environment | The natural world around us | We must protect the environment for future generations. | science
+Temperature | How hot or cold something is | The temperature today is perfect for swimming. | science
+Experiment | Test done to learn something new | We did a science experiment in class today. | science
+Discovery | Finding something new | The discovery of electricity changed the world. | science
+Invention | Something created for first time | The invention of the wheel helped transportation. | science
+Solar | Related to the sun | Solar panels use sunlight to create electricity. | science
+Cell | Smallest unit of living things | All plants and animals are made of cells. | science
+Bone | Hard parts inside body | Strong bones support your body weight. | science
+Blood | Red liquid that flows in body | Blood carries oxygen to all body parts. | science
+Brain | Organ that controls thinking | The brain controls all body functions. | science
+Gravity | Force that pulls things down | Gravity makes things fall to the ground. | science
+Electricity | Power that makes lights work | Electricity powers our computers and phones. | science
+Chemical | Substance used in science | Water is a chemical made of hydrogen and oxygen. | science
+Work | Activity done to earn money | I work at a local restaurant on weekends. | business
+Job | Regular paid employment | She found a good job at the bank. | business
+Money | Coins and notes used to buy things | Save your money for something special. | business
+Business | Activity of buying and selling | My uncle owns a small business in town. | business
+Company | Organization that sells goods or services | The company employs over 100 people. | business
+Customer | Person who buys goods or services | Good customer service is very important. | business
+Product | Something made to be sold | This product is very popular with young people. | business
+Service | Work done to help customers | The hotel provides excellent room service. | business
+Price | Amount of money something costs | The price of gas has increased this month. | business
+Sale | Act of selling something | The store is having a big sale this weekend. | business
+Profit | Money gained from business | The company made a good profit last year. | business
+Market | Place where things are bought and sold | We buy fresh vegetables at the local market. | business
+Office | Place where business work is done | My office is on the third floor of the building. | business
+Manager | Person who controls a business or team | The manager held a meeting with all employees. | business
+Employee | Person who works for a company | Every employee received a bonus this Christmas. | business
+Meeting | Gathering of people to discuss business | We have a team meeting every Monday morning. | business
+Contract | Legal agreement between people or companies | Read the contract carefully before signing it. | business
+Investment | Money put into something to make profit | Real estate can be a good investment. | business
+Budget | Plan for spending money | Make a monthly budget to control your expenses. | business
+Success | Achievement of desired goals | Hard work and dedication lead to success. | business
+Goal | Something you want to achieve | Set a goal and work hard to reach it. | business
+Plan | Idea about what to do | Make a plan before starting any project. | business
+Team | Group working together | Our team works together to finish projects. | business
+Idea | Thought about something new | She had a great idea for the school project. | business
+Store | Place where things are sold | The grocery store sells fresh food daily. | business
+Sell | Give something for money | They sell books at the school bookstore. | business
+Buy | Get something by paying money | We buy groceries every Saturday morning. | business
+Save | Keep money for future use | Save some money each week for emergencies. | business
+Spend | Use money to buy things | Don't spend all your money on games. | business
+Earn | Get money by working | Students can earn money by helping neighbors. | business
+Story | Description of events, real or imaginary | Grandma told us an interesting story about her childhood. | literature
+Book | Set of pages with writing or pictures | I borrowed a book from the library yesterday. | literature
+Author | Person who writes books or stories | The author signed copies of her new book. | literature
+Character | Person in a story or play | Harry Potter is the main character in the series. | literature
+Hero | Main good character in a story | The hero saved the village from danger. | literature
+Adventure | Exciting and dangerous experience | The book describes an adventure in the jungle. | literature
+Mystery | Something that is difficult to understand | The detective solved the mystery of the missing jewels. | literature
+Fiction | Stories that are made up, not real | I enjoy reading fiction more than factual books. | literature
+Poetry | Writing that expresses feelings in verse | She writes beautiful poetry about nature. | literature
+Novel | Long story book | This novel took me two weeks to finish reading. | literature
+Drama | Play performed in theater | The school is performing a drama next month. | literature
+Comedy | Funny play or story | We watched a comedy that made everyone laugh. | literature
+Poem | Piece of writing in verse | She recited a poem about friendship. | literature
+Reading | Activity of looking at and understanding words | Reading books improves your vocabulary. | literature
+Writing | Activity of creating text | Good writing takes practice and patience. | literature
+Language | System of communication using words | English is spoken as a second language worldwide. | literature
+Word | Single unit of language | Learn a new word every day to improve your English. | literature
+Sentence | Group of words expressing a complete thought | Write a sentence using your new vocabulary word. | literature
+Page | One side of a sheet in a book | Turn to page 50 to continue the story. | literature
+Chapter | Section of a book | Each chapter in this book tells a different story. | literature
+Library | Place with many books to read | The library is quiet place for reading and study. | literature
+Fairy tale | Magical story for children | Cinderella is a famous fairy tale loved by children. | literature
+Lesson | Something to be learned | Every story teaches us an important lesson. | literature
+Information | Facts about something | Books contain lots of useful information. | literature
+Knowledge | Things you know and understand | Reading books increases your knowledge about world. | literature
+Imagination | Ability to create pictures in mind | Use your imagination to create wonderful stories. | literature
+Favorite | Thing you like most | What is your favorite book to read? | literature
+Magazine | Book with pictures and short articles | The magazine has interesting articles and photos. | literature
+Newspaper | Daily paper with news | The newspaper tells us what happens daily. | literature
+Dictionary | Book explaining word meanings | Use dictionary to find meanings of new words. | literature
+Travel | Go from one place to another | Many people travel during summer vacation. | travel
+Trip | Journey to a place and back | We're planning a trip to the mountains next weekend. | travel
+Journey | Act of traveling from one place to another | The journey by train was comfortable and scenic. | travel
+Vacation | Time spent away from work for rest | We had a wonderful vacation at the beach. | travel
+Hotel | Building where travelers can stay | The hotel room had a beautiful view of the ocean. | travel
+Airport | Place where airplanes take off and land | Arrive at the airport two hours before your flight. | travel
+Flight | Journey by airplane | Our flight to Paris was delayed by two hours. | travel
+Ticket | Paper showing you paid for travel | Keep your ticket safe until the end of your journey. | travel
+Suitcase | Container for clothes when traveling | Pack your suitcase the night before traveling. | travel
+Tourist | Person who visits places for pleasure | Many tourists visit this city every summer. | travel
+Guide | Person who shows tourists around | The tour guide explained the history of the castle. | travel
+Museum | Building displaying historical objects | The art museum has paintings from famous artists. | travel
+Beach | Sandy area beside the sea | Children love playing in the sand at the beach. | travel
+Mountain | Very high area of land | The view from the mountain top was breathtaking. | travel
+City | Large town with many people | New York is a busy city that never sleeps. | travel
+Country | Nation with its own government | France is a beautiful country to visit. | travel
+Culture | Way of life of a group of people | Learning about local culture makes travel more interesting. | travel
+Food | Things we eat | Try the local food when you visit new places. | travel
+Language | Way people communicate | Learning basic phrases in the local language is helpful. | travel
+Map | Drawing showing where places are | Use a map to find your way around the new city. | travel
+Train | Long vehicle that travels on tracks | The train carries many people to different cities. | travel
+Bus | Large vehicle for many passengers | The school bus takes children to school safely. | travel
+Car | Vehicle for small group of people | Our family car takes us on weekend trips. | travel
+Plane | Flying vehicle for long distances | The plane flies high above the clouds. | travel
+Road | Path for cars to drive on | The road leads to the beautiful mountain lake. | travel
+Bridge | Structure built over water or valley | The bridge connects two sides of the river. | travel
+Station | Place where trains or buses stop | Wait at the station for the next train. | travel
+Distance | Space between two places | The distance between home and school is short. | travel
+Direction | Way to go to reach place | Ask for directions if you get lost. | travel
+Adventure | Exciting experience | Camping in forest was a great adventure. | travel
+History | Study of past events | History helps us understand how the world changed. | history
+Past | Time before now | In the past, people traveled by horse and carriage. | history
+Ancient | Very old, from long ago | Ancient Egypt had powerful kings called pharaohs. | history
+War | Fighting between countries or groups | The war ended when both sides agreed to peace. | history
+Peace | Time when there is no fighting | After years of conflict, peace finally came to the region. | history
+King | Male ruler of a country | The king lived in a magnificent castle. | history
+Queen | Female ruler of a country | The queen was loved by all her people. | history
+Castle | Large strong building where rulers lived | The medieval castle still stands on the hill. | history
+Battle | Fight between armies | The famous battle took place near the river. | history
+Discovery | Finding something new | The discovery of America changed world history. | history
+Explorer | Person who travels to unknown places | The brave explorer sailed across dangerous seas. | history
+Culture | Way of life of a group of people | Ancient Greek culture influenced many other civilizations. | history
+Art | Creative works like paintings and sculptures | Renaissance art is displayed in museums worldwide. | history
+Religion | Belief in gods or spiritual ideas | Religion played an important role in ancient societies. | history
+Government | Group of people who rule a country | The government makes laws for all citizens to follow. | history
+Invention | Something created for the first time | The invention of the wheel changed transportation forever. | history
+Revolution | Big change in how things are done | The industrial revolution changed how people worked. | history
+Empire | Group of countries ruled by one power | The Roman Empire was one of the largest in history. | history
+Tradition | Custom passed from older to younger people | Family traditions connect us to our ancestors. | history
+Monument | Structure built to remember important events | The monument honors soldiers who died in the war. | history
+Hero | Person who does brave things | The hero saved many people during the flood. | history
+Leader | Person who guides others | A good leader helps people make right decisions. | history
+Soldier | Person who fights for country | Brave soldiers protect our country from enemies. | history
+Freedom | Ability to do what you want | Freedom means you can choose your own path. | history
+Victory | Winning in battle or competition | The team celebrated their victory in the game. | history
+Change | Making something different | People can change the world with good ideas. | history
+Future | Time that will come later | Students study hard to build better future. | history
+Memory | Remembering things from past | We keep memory of important events alive. | history
+Story | Account of past events | Grandparents tell stories about old times. | history
+Legend | Old story passed down | The legend tells about brave knight's adventures. | history
+Geography | Study of Earth's surface and features | Geography class taught us about different countries. | geography
+Earth | The planet where we live | Earth is the third planet from the sun. | geography
+Continent | Very large area of land | Asia is the largest continent in the world. | geography
+Ocean | Very large area of salt water | The Atlantic Ocean separates Europe and America. | geography
+Country | Area with its own government | Canada is a country in North America. | geography
+City | Large town where many people live | London is the capital city of England. | geography
+River | Large stream of water | The Amazon River flows through South America. | geography
+Mountain | Very high area of land | Mount Everest is the highest mountain on Earth. | geography
+Desert | Very dry area with little water | The Sahara Desert covers much of North Africa. | geography
+Forest | Large area covered with trees | The rainforest is home to many animal species. | geography
+Island | Piece of land surrounded by water | Japan is an island nation in the Pacific Ocean. | geography
+Lake | Large area of water surrounded by land | We went fishing at the beautiful mountain lake. | geography
+Climate | Usual weather in a place | The tropical climate is hot and humid year-round. | geography
+Population | Number of people living in a place | The city's population has grown rapidly in recent years. | geography
+Capital | Most important city in a country | Paris is the capital of France. | geography
+Border | Line separating two countries | Show your passport when crossing the border. | geography
+Coast | Land next to the sea | The west coast has beautiful beaches and cliffs. | geography
+Valley | Low area between hills or mountains | The green valley was perfect for farming. | geography
+North | Direction toward the top of maps | Canada is north of the United States. | geography
+South | Direction toward the bottom of maps | We drove south for our winter vacation. | geography
+East | Direction where sun rises | The sun rises in the east every morning. | geography
+West | Direction where sun sets | The sun sets in the west every evening. | geography
+World | All the countries and people on Earth | People from around world speak different languages. | geography
+Map | Picture showing countries and places | Look at the map to find your country. | geography
+Weather | Rain, sun, wind, and temperature outside | Today's weather is perfect for outdoor games. | geography
+Season | Time of year like summer or winter | Spring is the season when flowers bloom. | geography
+Hot | Having high temperature | Desert places are very hot during the day. | geography
+Cold | Having low temperature | Mountain tops are cold even in summer. | geography
+Rain | Water falling from clouds | Plants need rain to grow big and strong. | geography
+Sun | Bright star that gives light and heat | The sun gives us light during the day. | geography
+Health | Being free from illness | Good health is more important than wealth. | health
+Doctor | Person who treats sick people | Visit the doctor if you don't feel well. | health
+Medicine | Treatment for illness | Take your medicine with water after meals. | health
+Hospital | Place where sick people are treated | The new hospital has the latest medical equipment. | health
+Exercise | Physical activity to stay healthy | Regular exercise helps keep your body strong. | health
+Diet | Food and drink regularly consumed | A healthy diet includes lots of fruits and vegetables. | health
+Nutrition | Process of getting food needed for health | Good nutrition is essential for growing children. | health
+Fitness | Being physically healthy and strong | The gym helps people improve their fitness level. | health
+Sleep | Natural rest when eyes are closed | Adults need about eight hours of sleep each night. | health
+Stress | Feeling worried or pressured | Too much stress can harm your physical health. | health
+Vitamins | Substances needed for good health | Fruits contain vitamins that boost your immune system. | health
+Illness | Disease or period of being sick | Wash your hands regularly to prevent illness. | health
+Recovery | Process of getting better after illness | Rest and proper care speed up recovery time. | health
+Prevention | Stopping something bad from happening | Prevention is better than cure for most diseases. | health
+Treatment | Medical care for illness or injury | Early treatment can prevent serious complications. | health
+Symptoms | Signs that show someone is sick | Fever and headache are common cold symptoms. | health
+Checkup | Medical examination to check health | Get a regular checkup to monitor your health. | health
+Hygiene | Practices to maintain health and cleanliness | Good personal hygiene prevents many infections. | health
+Mental | Related to the mind and emotions | Mental health is just as important as physical health. | health
+Wellness | State of being healthy and happy | The wellness program focuses on total health improvement. | health
+Strong | Having power and energy | Eating good food makes your body strong. | health
+Weak | Not having much strength | You feel weak when you don't eat enough. | health
+Tired | Needing rest or sleep | Children feel tired after playing all day. | health
+Energy | Power to be active | Good breakfast gives you energy for whole day. | health
+Rest | Stop activity to relax | Take rest when you feel tired from work. | health
+Clean | Free from dirt | Keep your hands clean to avoid getting sick. | health
+Wash | Clean with water | Wash your hands before eating food. | health
+Hurt | Feel pain | Your knee will hurt if you fall down. | health
+Safe | Protected from danger | Wear helmet to keep your head safe. | health
+Danger | Possibility of harm | Fire is danger, so stay away from it. | health

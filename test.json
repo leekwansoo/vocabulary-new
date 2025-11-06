@@ -1,0 +1,84 @@
+{
+  "general": [
+    {
+      "word": "Important",
+      "meaning": "Having great significance or value",
+      "phrase": "It's important to study every day for better results.",
+      "expressions": [
+        "This is very important.",
+        "The important thing is to try."
+      ],
+      "video": "media/20231115_아린탄천에서.mp4"
+    },
+    {
+      "word": "Beautiful",
+      "meaning": "Pleasing to look at; attractive",
+      "phrase": "The sunset was beautiful over the calm lake.",
+      "expressions": [
+        "This is beautiful.",
+        "I like beautiful."
+      ],
+      "video": "media/20231115_아린탄천에서.mp4"
+    },
+    {
+      "word": "Amazing",
+      "meaning": "Causing great surprise or wonder",
+      "phrase": "She gave an amazing performance at the concert.",
+      "expressions": [
+        "That's amazing!",
+        "You look amazing today."
+      ],
+      "video": "media/amazing_example.mp4"
+    }
+  ],
+  "science": [
+    {
+      "word": "Animal",
+      "meaning": "A living creature that can move and eat",
+      "phrase": "The zoo has many different animals from around the world.",
+      "expressions": [
+        "This is animal.",
+        "I like animal."
+      ]
+    },
+    {
+      "word": "Plant",
+      "meaning": "A living thing that grows in soil",
+      "phrase": "Water the plant every morning to keep it healthy.",
+      "expressions": [
+        "This is plant.",
+        "I like plant."
+      ]
+    },
+    {
+      "word": "Amazing",
+      "meaning": "Causing great surprise or wonder",
+      "phrase": "She gave an amazing performance at the concert.",
+      "expressions": [
+        "That's amazing!",
+        "You look amazing today."
+      ],
+      "video": "media/amazing_example.mp4"
+    }
+  ],
+  "business": [
+    {
+      "word": "Market",
+      "meaning": "A place where people buy and sell goods",
+      "phrase": "The farmers' market has fresh fruits and vegetables.",
+      "expressions": [
+        "This is market.",
+        "I like market."
+      ]
+    },
+    {
+      "word": "Money",
+      "meaning": "Coins or bills used to buy things",
+      "phrase": "She saved her money to buy a new bicycle.",
+      "expressions": [
+        "This is money.",
+        "I like money."
+      ]
+    }
+  ]
+}
