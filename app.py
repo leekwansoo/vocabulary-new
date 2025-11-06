@@ -28,31 +28,6 @@ from utils.json_manager import (
 )
 
 from video_play import play_video, create_word_widget, get_difficulty
-# Phonetic transcriptions for vocabulary words
-PHONETICS = {
-    # General
-    "serendipity": "/ˌsɛrənˈdɪpɪti/",
-    "ephemeral": "/ɪˈfɛmərəl/",  
-    # Add more categories as needed...
-}
-
-# Difficulty levels for words
-DIFFICULTY_LEVELS = {
-    # General - Easy to Hard
-    "efficient": "⭐",
-    "authentic": "⭐",
-   
-    "innovative": "⭐⭐",
-    "diligent": "⭐⭐",
-    "benevolent": "⭐⭐⭐",
-    "eloquent": "⭐⭐⭐",
-      
-}
-
-def get_phonetic(word):
-    """Get phonetic transcription for a word"""
-    return PHONETICS.get(word.lower(), "")
-  
 
 # Configure the app
 st.set_page_config(
@@ -68,36 +43,26 @@ def local_css(file_path):
 
 local_css("css/styles.css")
 
-st.title("📚 Vocabulary Builder - Advanced 1")
-st.header("Enhanced Learning with Phonetics & Quizzes")
-st.subheader("Perfect for intermediate ESL learners")
+st.title("📚 Vocabulary Builder - Advanced")
 
 # Main Menu Navigation
 st.sidebar.title("🎯 Advanced Navigation")
 
 # Level Selection
 st.sidebar.markdown("### 🎯 Select Your Learning Level")
-level_col1, level_col2, level_col3, level_col4 = st.sidebar.columns(4)
+level_col1, level_col2 = st.sidebar.columns(2)
 
 with level_col1:
-    if st.sidebar.button("📚 **Level 1: Beginner**\n\nBasic vocabulary", key="adv1_level1"):
+    if st.sidebar.button("📚 **Level 1: Basic vocabulary", key="adv1_level1"):
         st.session_state.selected_level = 1
 
 with level_col2:
-    if st.sidebar.button("📖 **Level 2: Intermediate**\n\nChallenging words", key="adv1_level2"):
-        st.session_state.selected_level = 2
-
-with level_col3:
-    if st.sidebar.button("📘 **Level 3: Advanced**\n\nSophisticated vocabulary", key="adv1_level3"):
-        st.session_state.selected_level = 3
-
-with level_col4:
     if st.sidebar.button("✅ **Learned Words**\n\nReview learned vocabulary", key="adv1_learned"):
         st.session_state.selected_level = "learned"
 
 # Initialize session state
 if 'selected_level' not in st.session_state:
-    st.session_state.selected_level = 2  # Default to intermediate for Advanced 1 app
+    st.session_state.selected_level = 1  # Default to beginner for Advanced 1 app
 
 # Display current level
 current_level = st.session_state.selected_level
@@ -114,30 +79,30 @@ category_list = DEFAULT_CATEGORIES
 col1, col2 = st.columns(2)
 with col1:
     if current_level == "learned":
-        if st.button(f"📚 Load Learned Words", help="Load your learned vocabulary from learned.json"):
-            learned_words = load_learned_words()
-            if learned_words:
-                # Convert learned words to the standard vocabulary format and save to the working file
-                with open(word_file, "w", encoding='utf-8') as f:
-                    for word_entry in learned_words:
-                        f.write(f"{word_entry['word']} | {word_entry['meaning']} | {word_entry['phrase']} | {word_entry['category']}\n")
-                st.success(f"✅ Successfully loaded {len(learned_words)} learned words!")
-                st.info("Navigate to other sections to review your learned vocabulary.")
-            else:
-                st.warning("❌ No learned words found. Complete some lessons first to build your learned vocabulary!")
+        #if st.button(f"📚 Load Learned Words", help="Load your learned vocabulary from learned.json"):
+        learned_words = load_learned_words()
+        if learned_words:
+            # Convert learned words to the standard vocabulary format and save to the working file
+            with open(word_file, "w", encoding='utf-8') as f:
+                for word_entry in learned_words:
+                    f.write(f"{word_entry['word']} | {word_entry['meaning']} | {word_entry['phrase']} | {word_entry['category']}\n")
+            st.success(f"✅ Successfully loaded {len(learned_words)} learned words!")
+            # st.info("Navigate to other sections to review your learned vocabulary.")
+        else:
+            st.warning("❌ No learned words found")
     else:
-        if st.button(f"📚 Load Level {current_level} Vocabulary (160 words)", help=f"Load 20 words for each category at Level {current_level}"):
-            word_pools = load_word_pools(current_level)
-            # print(f"Loaded word pools: {current_level}\n {word_pools}")
-            if word_pools:
-                success = save_word_pools_to_file(word_pools, word_file)
-                if success:
-                    st.success(f"✅ Successfully loaded Level {current_level} vocabulary with 160 words across all categories!")
-                    st.info("Navigate to other sections to explore the features.")
-                else:
-                    st.error("❌ Error loading sample vocabulary.")
+        #   if st.button(f"📚 Load Level {current_level} Vocabulary (160 words)"):
+        word_pools = load_word_pools(current_level)
+        # print(f"Loaded word pools: {current_level}\n {word_pools}")
+        if word_pools:
+            success = save_word_pools_to_file(word_pools, word_file)
+            if success:
+                # st.success(f"✅ Successfully loaded Level {current_level} vocabulary")
+                pass
             else:
-                st.error(f"❌ Could not load Level {current_level} word pools from JSON file.")
+                st.error(f"❌ Error loading {current_level} vocabulary.")
+        else:
+            st.error(f"❌ Could not load Level {current_level} word pools from JSON file.")
 
 with col2:
     # Statistics display
@@ -169,14 +134,10 @@ selected_speed = st.sidebar.radio(
 if select == "📖 Study Mode":
     st.subheader("📖 Enhanced Study Mode")
 
-    target_level  = current_level if current_level != "learned" else None
-    
     if selected_category:
         # Load vocabulary with expressions from JSON files
         all_words = load_vocabulary_with_expressions(current_level)
         filtered_words = filter_words_by_category(all_words, selected_category)
-      
-        # filtered_words = [w for w in filtered_words if get_difficulty(w['word']) == target_level]
         # print(f"Filtered words:\n {filtered_words}")
         if filtered_words:
             
@@ -188,7 +149,6 @@ if select == "📖 Study Mode":
                     
                     with col1:
                         difficulty = get_difficulty(entry['word'])
-                        #print(f"Word: {entry['word']}, Difficulty: {difficulty}")
                         # Render the word card with editable expressions
                         create_word_widget(entry, editable_expressions=True, current_level=current_level)
 
@@ -245,7 +205,14 @@ if select == "📖 Study Mode":
                                 success = save_to_learned(entry)
                                 if success:
                                     delete_word_from_file(entry['word'], word_file)
-                                    
+                        
+                        st.markdown("<br>", unsafe_allow_html=True)
+                        if current_level == 1 or current_level == 2 or current_level ==3:
+                                word_file = "level" + str(current_level) + ".json"
+                        if st.button("Edit", key=f"edit_{entry['word']}", help="Edit this word"):
+                            # Implement edit functionality here
+                            pass
+
                         st.markdown("<br>", unsafe_allow_html=True)
                         if current_level == 1 or current_level == 2 or current_level ==3:
                                 word_file = "level" + str(current_level) + ".json"
@@ -254,4 +221,5 @@ if select == "📖 Study Mode":
                             st.success(f"'{entry['word']}' has been deleted from the vocabulary.")
                             st.rerun()  # Refresh the page to update the list
                                     
+                
                 
