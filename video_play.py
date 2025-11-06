@@ -18,27 +18,18 @@ try:
     from videoplay import play_video as external_play_video
 except Exception:
     external_play_video = None
-def get_difficulty(word):
+def get_difficulty(difficulty_level):
     """Get difficulty level for a word (robust to unexpected DIFFICULTY_LEVELS types)."""
-    try:
-        # If word is not a string, return default
-        if not isinstance(word, str):
-            return "⭐⭐"
-        key = word.lower().strip()
-        # If DIFFICULTY_LEVELS is a dict-like object
-        if hasattr(DIFFICULTY_LEVELS, "get"):
-            return DIFFICULTY_LEVELS.get(key, "⭐⭐")
-        # If DIFFICULTY_LEVELS is a list of dicts try to find an entry
-        if isinstance(DIFFICULTY_LEVELS, (list, tuple)):
-            for item in DIFFICULTY_LEVELS:
-                if isinstance(item, dict):
-                    if item.get("word", "").lower() == key:
-                        return item.get("difficulty", "⭐⭐")
-        # Unknown structure -> default
+    if difficulty_level == 1:
+        return "⭐"
+    # If DIFFICULTY_LEVELS is a dict-like object
+    if difficulty_level == 2:
         return "⭐⭐"
-    except Exception:
+    if difficulty_level == 3:
+        return "⭐⭐⭐"
+    else:
         return "⭐⭐"
-
+    
 def display_photo(path):
     """Display local image file or image from URL in Streamlit."""
     try:
@@ -119,8 +110,8 @@ def _drive_embed_link(url: str) -> str | None:
 def _detect_media_type(path_or_url: str) -> str:
     """Detect if the media is an image, video, or unknown type."""
     # Common extensions
-    image_exts = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp', '.svg', '.ico', '.tiff', '.tif'}
-    video_exts = {'.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm', '.mkv', '.m4v', '.mpg', '.mpeg'}
+    image_exts = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'}
+    video_exts = {'.mp4', '.avi', '.mov', '.wmv', '.flv', '.webm'}
     audio_exts = {'.mp3', '.wav', '.ogg', '.m4a', '.flac', '.aac'}
     
     # Get extension from path/URL
@@ -150,7 +141,10 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
     Handles local files, direct URLs, and attempts to convert Google Drive links.
     Also supplies an 'Open in external player' button that calls play_video()."""
     st.markdown("---")
-    difficulty = get_difficulty(entry['word'])
+    
+    difficulty_level = entry.get('difficulty', 2)
+    difficulty = get_difficulty(difficulty_level)
+    print(f"Difficulty for '{entry['word']}': {difficulty}")
     st.markdown(f"### 📚 {entry['word']} {difficulty}")
     
     # Larger font for Meaning with balanced styling
@@ -244,8 +238,7 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
                 entry['expressions'] = new_expressions
                 
                 # Save to JSON file
-                import json
-                import os
+             
                 level_files = {
                     1: "level1.json",
                     2: "level2.json", 
@@ -342,7 +335,7 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
                 else:
                     st.warning(f"Video file not found: {vp}")
                     st.write(str(vp))
-            else:
+            elif "drive.google.com" in str(media_path):
                 # URL video handling
                 if "drive.google.com" in str(media_path):
                     # Google Drive video
@@ -382,7 +375,17 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
                             st.markdown(f"[📺 Open video link]({media_path})")
                             if st.button("🎬 Open in external player", key=f"open_ext_{entry['word']}_{random_num}"):
                                 play_video(media_path)
-        
+            else:
+                # Generic URL video
+                random_num = random.randint(1, 100)
+                try:
+                    st.video(media_path)
+                except Exception as e:
+                    st.warning(f"⚠️ Cannot embed video from URL")
+                    st.markdown(f"[📺 Open video link]({media_path})")
+                    if st.button("🎬 Open in external player", key=f"open_ext_{entry['word']}_{random_num}"):
+                        play_video(media_path)
+                        
         elif media_type == 'audio':
             # Audio handling
             if not is_url:
