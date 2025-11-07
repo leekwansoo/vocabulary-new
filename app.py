@@ -5,10 +5,8 @@ from utils.main import (
     load_word_pools, 
     create_audio_file,  
     cleanup_audio_file,
-    generate_quiz_question,
     DEFAULT_CATEGORIES,
     DEFAULT_VOCABULARY_FILE,
-    DIFFICULTY_LEVELS,
     LEVEL_DESCRIPTIONS,
     SPEED_OPTIONS,
     SPEED_LABELS
@@ -23,11 +21,8 @@ from utils.json_manager import (
     save_to_learned,
     filter_words_by_category,
     delete_word_from_file,
-    validate_word_entry,
-    get_category_statistics
 )
-
-from video_play import play_video, create_word_widget, get_difficulty
+from word_widget import create_word_widget, get_difficulty
 
 # Configure the app
 st.set_page_config(
