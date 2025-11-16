@@ -8,7 +8,7 @@
         "This is beautiful.",
         "I like beautiful."
       ],
-      "video": "media/20231115_아린탄천에서.mp4"
+      "video": ""
     },
     {
       "word": "Helpful",
@@ -18,7 +18,7 @@
         "You're very helpful.",
         "That was really helpful advice."
       ],
-      "video": "media/20231115_아린탄천에서.mp4"
+      "media": ""
     },
     {
       "word": "Creative",
@@ -28,7 +28,7 @@
         "Be creative with your ideas.",
         "That's a creative solution."
       ],
-      "video": "media/20231115_아린탄천에서.mp4"
+      "media": ""
     },
     {
       "word": "Careful",
@@ -38,7 +38,7 @@
         "This is careful.",
         "I like careful."
       ],
-      "video": "media/20231115_아린탄천에서.mp4"
+      "media": ""
     },
     {
       "word": "Popular",
@@ -171,10 +171,9 @@
       "meaning": "성남의 중심을 통과하는 개천",
       "expressions": [
         "탄천은 물이 말고 공기가 깨끗하여 많은 시민이 운동과 휴식을 하기 좋은 물가 공원이예요",
-        "새벽마다 많은 사람들이 탄천에 나와 운전해요"
       ],
       "phrase": "아린이가 탄천에서 할머니와 놀고 있어요",
-      "media": "media/20231115_아린탄천에서.mp4"
+      "media": ""
     },
     {
       "word": "일본 혼슈",
@@ -184,7 +183,7 @@
         "혼슈는 일본에서 제일 큰 섬이예요"
       ],
       "phrase": "일본 여행",
-      "media": "media/parrots.jpg"
+      "media": ""
     },
     {
       "word": "Happy",
