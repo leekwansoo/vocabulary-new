@@ -2,6 +2,7 @@ import streamlit as st
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gemini-chat-414606-505058a474c0.json"
 import random
+import asyncio
 random.seed(42)
 from utils.main import (
     load_word_pools, 
@@ -189,7 +190,7 @@ if select == "📖 Study Mode":
                         # Play buttons
                         random_num = random.randint(0, 300)
                         if st.button(f"🔊 Word", key=f"word_{entry['word']}_{random_num}"):
-                            audio_file = create_audio_file(entry['word'], f"word_{entry['word']}", is_phrase=False, speed=selected_speed)
+                            audio_file = asyncio.run(create_audio_file(entry['word'], f"word_{entry['word']}", is_phrase=False, speed=selected_speed))
                             if audio_file and os.path.exists(audio_file):
                                 with open(audio_file, 'rb') as audio:
                                     # Detect audio format based on file extension
@@ -200,7 +201,7 @@ if select == "📖 Study Mode":
                                 st.error("Audio generation failed")
                         random_num = random.randint(0, 300)
                         if entry['phrase'] and st.button(f"🔊 Phrase", key=f"phrase_{entry['word']}_{random_num}"):
-                            audio_file = create_audio_file(entry['phrase'], f"phrase_{entry['word']}", is_phrase=True, speed=selected_speed)
+                            audio_file = asyncio.run(create_audio_file(entry['phrase'], f"phrase_{entry['word']}", is_phrase=True, speed=selected_speed))
                             if audio_file and os.path.exists(audio_file):
                                 with open(audio_file, 'rb') as audio:
                                     # Detect audio format based on file extension
