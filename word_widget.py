@@ -1,4 +1,4 @@
-from turtle import width
+# from turtle import width # Dont use TKinter environment
 import streamlit as st 
 import random
 import os
@@ -182,13 +182,13 @@ def create_word_widget(entry: dict, editable_expressions=True, editable_phrase=T
                     if not img_path.is_absolute():
                         img_path = (proj_root / img_path).resolve()
                     if img_path.exists():
-                        st.image(str(img_path), width)
+                        st.image(str(img_path), use_container_width=True)
                     else:
                         st.warning(f"Image file not found: {img_path}")
                 else:
                     # URL image
                     try:
-                        st.image(media_path, width)
+                        st.image(media_path, use_container_width=True)
                     except Exception as e:
                         st.error(f"Cannot load image: {e}")
                         st.markdown(f"[🖼️ Open image link]({media_path})")
@@ -301,13 +301,13 @@ def create_word_widget(entry: dict, editable_expressions=True, editable_phrase=T
                         with col1:
                             if st.button("📷 Try as Image", key=f"img_{entry['word']}"):
                                 try:
-                                    st.image(str(unknown_path), width)
+                                    st.image(str(unknown_path), use_container_width=True)
                                 except Exception as e:
                                     st.error(f"Cannot display as image: {e}")
                         with col2:
                             if st.button("🎬 Try as Video", key=f"vid_{entry['word']}"):
                                 try:
-                                    st.video(str(unknown_path), width)
+                                    st.video(str(unknown_path), use_container_width=True)
                                 except Exception as e:
                                     st.error(f"Cannot play as video: {e}")
                     else:
@@ -325,7 +325,7 @@ def create_word_widget(entry: dict, editable_expressions=True, editable_phrase=T
                     with col2:
                         if st.button("🎬 Try as Video", key=f"vid_{entry['word']}"):
                             try:
-                                st.video(media_path)
+                                st.video(media_path, use_container_width=True)
                             except Exception as e:
                                 st.error(f"Cannot play as video: {e}")
             
