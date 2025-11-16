@@ -11,6 +11,7 @@ import os
 import json
 import re
 import random
+import asyncio
 random.seed(42)
 
 
@@ -57,7 +58,7 @@ def detect_language(text):
     else:
         return 'en'
 
-def create_audio_file(text, filename, is_phrase=False, speed="normal"):
+async def create_audio_file(text, filename, is_phrase=False, speed="normal"):
     """
     Create audio file for text-to-speech with American English voice (cloud-compatible)
     
@@ -77,71 +78,83 @@ def create_audio_file(text, filename, is_phrase=False, speed="normal"):
     if detected_language == 'en':
         # Try pyttsx3 first (for local development with English)
         try:
-            engine = pyttsx3.init()
+            # Run pyttsx3 in thread pool to avoid blocking
+            loop = asyncio.get_event_loop()
             
-            # Get available voices
-            voices = engine.getProperty('voices')
+            def _create_with_pyttsx3():
+                engine = pyttsx3.init()
+                
+                # Get available voices
+                voices = engine.getProperty('voices')
+                
+                # Try to find an American English voice
+                american_voice = None
+                for voice in voices:
+                    # Look for American English voices (common identifiers)
+                    if voice.id and any(identifier in voice.id.lower() for identifier in ['david', 'mark', 'zira', 'hazel', 'us', 'american', 'en-us']):
+                        american_voice = voice.id
+                        break
+                    # Fallback: look for any English voice
+                    elif voice.id and 'en' in voice.id.lower():
+                        american_voice = voice.id
+                
+                # Set the American English voice if found
+                if american_voice:
+                    engine.setProperty('voice', american_voice)
+                
+                # Base speech rates
+                base_word_rate = 160
+                base_phrase_rate = 140
+                
+                # Apply speed multiplier
+                speed_multipliers = {
+                    "normal": 1.0,
+                    "0.9": 0.9,
+                    "0.8": 0.8
+                }
+                
+                multiplier = speed_multipliers.get(speed, 1.0)
+                
+                # Adjust settings for phrases vs single words with speed options
+                if is_phrase:
+                    final_rate = int(base_phrase_rate * multiplier)
+                else:
+                    final_rate = int(base_word_rate * multiplier)
+                
+                engine.setProperty('rate', final_rate)
+                engine.setProperty('volume', 0.9)
+                
+                # Create temporary file path
+                temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.wav")
+                engine.save_to_file(text, temp_file)
+                engine.runAndWait()
+                return temp_file
             
-            # Try to find an American English voice
-            american_voice = None
-            for voice in voices:
-                # Look for American English voices (common identifiers)
-                if voice.id and any(identifier in voice.id.lower() for identifier in ['david', 'mark', 'zira', 'hazel', 'us', 'american', 'en-us']):
-                    american_voice = voice.id
-                    break
-                # Fallback: look for any English voice
-                elif voice.id and 'en' in voice.id.lower():
-                    american_voice = voice.id
-            
-            # Set the American English voice if found
-            if american_voice:
-                engine.setProperty('voice', american_voice)
-            
-            # Base speech rates
-            base_word_rate = 160
-            base_phrase_rate = 140
-            
-            # Apply speed multiplier
-            speed_multipliers = {
-                "normal": 1.0,
-                "0.9": 0.9,
-                "0.8": 0.8
-            }
-            
-            multiplier = speed_multipliers.get(speed, 1.0)
-            
-            # Adjust settings for phrases vs single words with speed options
-            if is_phrase:
-                final_rate = int(base_phrase_rate * multiplier)
-            else:
-                final_rate = int(base_word_rate * multiplier)
-            
-            engine.setProperty('rate', final_rate)
-            engine.setProperty('volume', 0.9)
-            
-            # Create temporary file path
-            temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.wav")
-            engine.save_to_file(text, temp_file)
-            engine.runAndWait()
-            return temp_file
+            return await loop.run_in_executor(None, _create_with_pyttsx3)
             
         except Exception as e:
             print(f"pyttsx3 failed ({e}), trying gTTS for cloud compatibility...")
     
     # Use gTTS for non-English languages or if pyttsx3 failed
     try:
-        # Adjust speed for gTTS (it only has slow/normal)
-        use_slow_speech = speed in ["0.9", "0.8"] or is_phrase
+        # Run gTTS in thread pool to avoid blocking
+        loop = asyncio.get_event_loop()
         
-        # Create TTS object
-        tts = gTTS(text=text, lang=detected_language, slow=use_slow_speech)
-        print(f"Detected language: {detected_language} for text: '{text}'")
-        # Create temporary file path (MP3 format for gTTS)
-        temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.mp3")
-        tts.save(temp_file)
+        def _create_with_gtts():
+            # Adjust speed for gTTS (it only has slow/normal)
+            use_slow_speech = speed in ["1.0", "0.9"] or is_phrase
+            
+            # Create TTS object
+            tts = gTTS(text=text, lang=detected_language, slow=use_slow_speech)
+            print(f"Detected language: {detected_language} for text: '{text}'")
+            # Create temporary file path (MP3 format for gTTS)
+            temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.mp3")
+            tts.save(temp_file)
+            
+            print(f"Created audio file using gTTS: {temp_file}")
+            return temp_file
         
-        print(f"Created audio file using gTTS: {temp_file}")
-        return temp_file
+        return await loop.run_in_executor(None, _create_with_gtts)
         
     except Exception as e2:
         print(f"gTTS failed: {e2}")
