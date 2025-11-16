@@ -1,6 +1,8 @@
 import streamlit as st 
 import os
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gemini-chat-414606-505058a474c0.json"
 import random
+random.seed(42)
 from utils.main import (
     load_word_pools, 
     create_audio_file,  
@@ -13,6 +15,7 @@ from utils.main import (
 )
 
 from utils.json_manager import (
+    delete_word_from_json,
     load_vocabulary_with_expressions,
     load_vocabulary_from_file,
     load_learned_words,
@@ -45,13 +48,21 @@ st.sidebar.title("🎯 Advanced Navigation")
 
 # Level Selection
 st.sidebar.markdown("### 🎯 Select Your Learning Level")
-level_col1, level_col2 = st.sidebar.columns(2)
+level_col1, level_col2, level_col3, level_col4 = st.sidebar.columns(4)
 
 with level_col1:
     if st.sidebar.button("📚 **Level 1: Basic vocabulary", key="adv1_level1"):
         st.session_state.selected_level = 1
-
+        
 with level_col2:
+    if st.sidebar.button("📚 **Level 2: Intermediate vocabulary", key="adv1_level2"):
+        st.session_state.selected_level = 2
+        
+with level_col3:
+    if st.sidebar.button("📚 **Level 3: Advanced vocabulary", key="adv1_level3"):
+        st.session_state.selected_level = 3
+
+with level_col4:
     if st.sidebar.button("✅ **Learned Words**\n\nReview learned vocabulary", key="adv1_learned"):
         st.session_state.selected_level = "learned"
 
@@ -127,6 +138,7 @@ selected_speed = st.sidebar.radio(
 
 
 if select == "📖 Study Mode":
+    
     st.subheader("📖 Enhanced Study Mode")
 
     if selected_category:
@@ -135,8 +147,19 @@ if select == "📖 Study Mode":
         filtered_words = filter_words_by_category(all_words, selected_category)
         # print(f"Filtered words:\n {filtered_words}")
         if filtered_words:
-            
-            st.info(f"📚 Showing {len(filtered_words)} words from {selected_category}")
+            col1, col2 = st.columns([1, 1])
+            with col1:
+                st.info(f"📚 Showing {len(filtered_words)} words from {selected_category}")
+            with col2:
+                search_word = st.text_input("🔍 Search Word", key="search_word_input")
+                if search_word:
+                    # display word with container
+                    filtered_words = [entry for entry in filtered_words if search_word.lower() in entry['word'].lower()]
+                    if not filtered_words:
+                        st.warning(f"No words found matching '{search_word}' in {selected_category}")
+                    else:
+                        st.info(f"📚 Showing {len(filtered_words)} words matching '{search_word}' in {selected_category}")            
+                    
             
             for entry in filtered_words:
                 with st.container():
@@ -152,7 +175,8 @@ if select == "📖 Study Mode":
                         st.markdown("<br>", unsafe_allow_html=True)
                         
                         # Play buttons
-                        if st.button(f"🔊 Word", key=f"word_{entry['word']}"):
+                        random_num = random.randint(0, 300)
+                        if st.button(f"🔊 Word", key=f"word_{entry['word']}_{random_num}"):
                             audio_file = create_audio_file(entry['word'], f"word_{entry['word']}", is_phrase=False, speed=selected_speed)
                             if audio_file and os.path.exists(audio_file):
                                 with open(audio_file, 'rb') as audio:
@@ -162,8 +186,8 @@ if select == "📖 Study Mode":
                                 cleanup_audio_file(audio_file)
                             else:
                                 st.error("Audio generation failed")
-                        
-                        if entry['phrase'] and st.button(f"🔊 Phrase", key=f"phrase_{entry['word']}"):
+                        random_num = random.randint(0, 300)
+                        if entry['phrase'] and st.button(f"🔊 Phrase", key=f"phrase_{entry['word']}_{random_num}"):
                             audio_file = create_audio_file(entry['phrase'], f"phrase_{entry['word']}", is_phrase=True, speed=selected_speed)
                             if audio_file and os.path.exists(audio_file):
                                 with open(audio_file, 'rb') as audio:
@@ -196,23 +220,40 @@ if select == "📖 Study Mode":
                             # Learned button for regular levels
                             if current_level == 1 or current_level == 2 or current_level ==3:
                                 word_file = "level" + str(current_level) + ".json"
-                            if st.button(f"✅ Learned", key=f"learned_{entry['word']}", help="Move to learned words"):
+                            random_num = random.randint(0, 300)
+                            if st.button(f"✅ Learned", key=f"learned_{entry['word']}_{random_num}", help="Move to learned words"):
                                 success = save_to_learned(entry)
                                 if success:
                                     delete_word_from_file(entry['word'], word_file)
+                                    st.success(f"'{entry['word']}' moved to learned words!")
+                                    st.rerun()  # Refresh the page to update the list
                         
                         st.markdown("<br>", unsafe_allow_html=True)
                         if current_level == 1 or current_level == 2 or current_level ==3:
                                 word_file = "level" + str(current_level) + ".json"
-                        if st.button("Edit", key=f"edit_{entry['word']}", help="Edit this word"):
-                            # Implement edit functionality here
-                            pass
+                        random_num = random.randint(0, 300)
+                        if st.button("Edit Word", key=f"edit_{entry['word']}_{random_num}", help="Edit this word"):
+                            # Store the word data in session state for editing
+                            st.session_state.edit_mode = True
+                            st.session_state.edit_word_data = {
+                                "word": entry['word'],
+                                "meaning": entry.get('meaning', ''),
+                                "expressions": entry.get('expressions', []),
+                                "phrase": entry.get('phrase', ''),
+                                "media": entry.get('media', ''),
+                                "category": entry.get('category', selected_category),
+                                "difficulty": current_level,
+                                "original_file": word_file
+                            }
+                            # Navigate to add_word page
+                            st.switch_page("pages/01_add_word.py")
 
                         st.markdown("<br>", unsafe_allow_html=True)
                         if current_level == 1 or current_level == 2 or current_level ==3:
                                 word_file = "level" + str(current_level) + ".json"
-                        if st.button("Delete", key=f"delete_{entry['word']}", help="Delete this word from vocabulary"):
-                            delete_word_from_file(entry['word'], word_file)
+                        random_num = random.randint(0, 300)
+                        if st.button("Delete Word", key=f"delete_{entry['word']}_{random_num}", help="Delete this word from vocabulary"):
+                            delete_word_from_json(entry['word'], word_file)
                             st.success(f"'{entry['word']}' has been deleted from the vocabulary.")
                             st.rerun()  # Refresh the page to update the list
                                     
