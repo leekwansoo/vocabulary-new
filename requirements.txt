@@ -7,4 +7,5 @@ sympy
 #   pywin32
 gtts>=2.3.0  # Google Text-to-Speech (requires internet)
 requests>=2.25.0  # Required for gtts
+pythonturtle
 # playsound>=1.3.0  # Simple audio playback (cross-platform) - commented out due to build issues
