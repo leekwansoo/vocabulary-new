@@ -174,7 +174,7 @@ if select == "📖 Study Mode":
                         st.info(f"📚 Showing {len(filtered_words)} words matching '{search_word}' in {selected_category}")            
                     
             
-            for entry in filtered_words:
+            for word_index, entry in enumerate(filtered_words):
                 with st.container():
                     col1, col2 = st.columns([4, 1])
                     
@@ -256,7 +256,9 @@ if select == "📖 Study Mode":
                                 "media": entry.get('media', ''),
                                 "category": entry.get('category', selected_category),
                                 "difficulty": current_level,
-                                "original_file": word_file
+                                "original_file": word_file,
+                                "word_position": word_index,
+                                "total_words": len(filtered_words)
                             }
                             # Navigate to add_word page
                             st.switch_page("pages/01_add_word.py")
