@@ -1,6 +1,8 @@
+from turtle import width
 import streamlit as st 
 import random
 import os
+import json
 from pathlib import Path
 from video_play import play_video, display_photo,  _drive_embed_link, _drive_direct_link, _detect_media_type
 
@@ -17,7 +19,7 @@ def get_difficulty(difficulty_level):
         return "⭐⭐"
 
 
-def create_word_widget(entry: dict, editable_expressions=True, current_level=None):
+def create_word_widget(entry: dict, editable_expressions=True, editable_phrase=True, current_level=None):
     """Render the word card (meaning, expressions, phrase) and show video if provided.
     Handles local files, direct URLs, and attempts to convert Google Drive links.
     Also supplies an 'Open in external player' button that calls play_video()."""
@@ -25,11 +27,14 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
     
     difficulty_level = entry.get('difficulty', 2)
     difficulty = get_difficulty(difficulty_level)
-    print(f"Difficulty for '{entry['word']}': {difficulty}")
+    # print(f"Difficulty for '{entry['word']}': {difficulty}")
     st.markdown(f"### 📚 {entry['word']} {difficulty}")
     
     # Larger font for Meaning with balanced styling
     st.markdown(f"<div class='balanced-meaning'><strong>Meaning:</strong> {entry.get('meaning','')}</div>", unsafe_allow_html=True)
+    
+    # Larger font for Phrase with balanced styling
+    st.markdown(f"<div class='balanced-phrase'><strong>Phrase:</strong> {entry.get('phrase','')}</div>", unsafe_allow_html=True)
     
     # Handle expressions display - either editable or read-only
     if editable_expressions and current_level != "learned":
@@ -96,13 +101,7 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
         else:
             new_expressions = []
         
-        # Debug info (you can remove this later)
-        with st.expander("🔍 Debug Info", expanded=False):
-            st.write(f"**Current expressions:** {entry.get('expressions', [])}")
-            st.write(f"**Input text:** '{expressions_input}'")
-            st.write(f"**Parsed new expressions:** {new_expressions}")
-            st.write(f"**Text area has content:** {bool(expressions_input.strip())}")
-        
+              
         # Save Expressions Button - always visible for manual saving
         st.markdown("<div style='margin: 8px 0;'></div>", unsafe_allow_html=True)
         
@@ -160,10 +159,8 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
     
     # Add small spacing between expressions and phrase
     st.markdown("<div style='margin: 4px 0;'></div>", unsafe_allow_html=True)
-    
-    # Larger font for Phrase with balanced styling
-    st.markdown(f"<div class='balanced-phrase'><strong>Phrase:</strong> {entry.get('phrase','')}</div>", unsafe_allow_html=True)
-    
+       
+    # Media handling (image or video)    
     media_path = entry.get('media') or entry.get('video')
     if media_path:
         # Detect media type automatically
@@ -185,13 +182,13 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
                     if not img_path.is_absolute():
                         img_path = (proj_root / img_path).resolve()
                     if img_path.exists():
-                        st.image(str(img_path), use_container_width=True)
+                        st.image(str(img_path), width)
                     else:
                         st.warning(f"Image file not found: {img_path}")
                 else:
                     # URL image
                     try:
-                        st.image(media_path, use_container_width=True)
+                        st.image(media_path, width)
                     except Exception as e:
                         st.error(f"Cannot load image: {e}")
                         st.markdown(f"[🖼️ Open image link]({media_path})")
@@ -304,13 +301,13 @@ def create_word_widget(entry: dict, editable_expressions=True, current_level=Non
                         with col1:
                             if st.button("📷 Try as Image", key=f"img_{entry['word']}"):
                                 try:
-                                    st.image(str(unknown_path), use_container_width=True)
+                                    st.image(str(unknown_path), width)
                                 except Exception as e:
                                     st.error(f"Cannot display as image: {e}")
                         with col2:
                             if st.button("🎬 Try as Video", key=f"vid_{entry['word']}"):
                                 try:
-                                    st.video(str(unknown_path))
+                                    st.video(str(unknown_path), width)
                                 except Exception as e:
                                     st.error(f"Cannot play as video: {e}")
                     else:
