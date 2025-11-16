@@ -9,8 +9,9 @@ import io
 import tempfile
 import os
 import json
-
-from sympy import re
+import re
+import random
+random.seed(42)
 
 
 def load_word_pools(level=1):
@@ -69,77 +70,82 @@ def create_audio_file(text, filename, is_phrase=False, speed="normal"):
     Returns:
         str or None: Path to the created audio file, or None if failed
     """
-    # Try pyttsx3 first (for local development)
-    try:
-        engine = pyttsx3.init()
-        
-        # Get available voices
-        voices = engine.getProperty('voices')
-        
-        # Try to find an American English voice
-        american_voice = None
-        for voice in voices:
-            # Look for American English voices (common identifiers)
-            if voice.id and any(identifier in voice.id.lower() for identifier in ['david', 'mark', 'zira', 'hazel', 'us', 'american', 'en-us']):
-                american_voice = voice.id
-                break
-            # Fallback: look for any English voice
-            elif voice.id and 'en' in voice.id.lower():
-                american_voice = voice.id
-        
-        # Set the American English voice if found
-        if american_voice:
-            engine.setProperty('voice', american_voice)
-        
-        # Base speech rates
-        base_word_rate = 160
-        base_phrase_rate = 140
-        
-        # Apply speed multiplier
-        speed_multipliers = {
-            "normal": 1.0,
-            "0.9": 0.9,
-            "0.8": 0.8
-        }
-        
-        multiplier = speed_multipliers.get(speed, 1.0)
-        
-        # Adjust settings for phrases vs single words with speed options
-        if is_phrase:
-            final_rate = int(base_phrase_rate * multiplier)
-        else:
-            final_rate = int(base_word_rate * multiplier)
-        
-        engine.setProperty('rate', final_rate)
-        engine.setProperty('volume', 0.9)
-        
-        # Create temporary file path
-        temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.wav")
-        engine.save_to_file(text, temp_file)
-        engine.runAndWait()
-        return temp_file
-        
-    except Exception as e:
-        print(f"pyttsx3 failed ({e}), trying gTTS for cloud compatibility...")
-        
-        # Fall back to gTTS (for cloud deployment)
+    # Detect language first
+    detected_language = detect_language(text)
+    
+    # Only use pyttsx3 for English text, use gTTS for other languages
+    if detected_language == 'en':
+        # Try pyttsx3 first (for local development with English)
         try:
-            # Adjust speed for gTTS (it only has slow/normal)
-            use_slow_speech = speed in ["0.9", "0.8"] or is_phrase
-            detected_language = detect_language(text)
-            # Create TTS object
-            tts = gTTS(text=text, lang=detected_language, slow=use_slow_speech)
-            print(f"Detected language: {detected_language} for text: '{text}'")
-            # Create temporary file path (MP3 format for gTTS)
-            temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.mp3")
-            tts.save(temp_file)
+            engine = pyttsx3.init()
             
-            print(f"Created audio file using gTTS: {temp_file}")
+            # Get available voices
+            voices = engine.getProperty('voices')
+            
+            # Try to find an American English voice
+            american_voice = None
+            for voice in voices:
+                # Look for American English voices (common identifiers)
+                if voice.id and any(identifier in voice.id.lower() for identifier in ['david', 'mark', 'zira', 'hazel', 'us', 'american', 'en-us']):
+                    american_voice = voice.id
+                    break
+                # Fallback: look for any English voice
+                elif voice.id and 'en' in voice.id.lower():
+                    american_voice = voice.id
+            
+            # Set the American English voice if found
+            if american_voice:
+                engine.setProperty('voice', american_voice)
+            
+            # Base speech rates
+            base_word_rate = 160
+            base_phrase_rate = 140
+            
+            # Apply speed multiplier
+            speed_multipliers = {
+                "normal": 1.0,
+                "0.9": 0.9,
+                "0.8": 0.8
+            }
+            
+            multiplier = speed_multipliers.get(speed, 1.0)
+            
+            # Adjust settings for phrases vs single words with speed options
+            if is_phrase:
+                final_rate = int(base_phrase_rate * multiplier)
+            else:
+                final_rate = int(base_word_rate * multiplier)
+            
+            engine.setProperty('rate', final_rate)
+            engine.setProperty('volume', 0.9)
+            
+            # Create temporary file path
+            temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.wav")
+            engine.save_to_file(text, temp_file)
+            engine.runAndWait()
             return temp_file
             
-        except Exception as e2:
-            print(f"All TTS methods failed: pyttsx3({e}), gTTS({e2})")
-            return None
+        except Exception as e:
+            print(f"pyttsx3 failed ({e}), trying gTTS for cloud compatibility...")
+    
+    # Use gTTS for non-English languages or if pyttsx3 failed
+    try:
+        # Adjust speed for gTTS (it only has slow/normal)
+        use_slow_speech = speed in ["0.9", "0.8"] or is_phrase
+        
+        # Create TTS object
+        tts = gTTS(text=text, lang=detected_language, slow=use_slow_speech)
+        print(f"Detected language: {detected_language} for text: '{text}'")
+        # Create temporary file path (MP3 format for gTTS)
+        temp_file = os.path.join(tempfile.gettempdir(), f"{filename}.mp3")
+        tts.save(temp_file)
+        
+        print(f"Created audio file using gTTS: {temp_file}")
+        return temp_file
+        
+    except Exception as e2:
+        print(f"gTTS failed: {e2}")
+        return None
 
 
 def cleanup_audio_file(file_path):
@@ -185,30 +191,3 @@ SPEED_LABELS = {
     "0.8": "Slowest (80%)"
 }
 
-
-if __name__ == "__main__":
-    # Test functions when running main.py directly
-    print("Testing vocabulary builder functions...")
-    """
-    # Test loading word pools for each level
-    for level in DIFFICULTY_LEVELS:
-        pools = load_word_pools(level)
-        if pools:
-            print(f"Level {level} - Loaded {len(pools)} categories")
-            for category, words in pools.items():
-                print(f"  {category.title()}: {len(words)} words")
-        print()
-    
-    # Test audio creation
-    print("\nTesting audio creation...")
-    try:
-        audio_file = create_audio_file("Hello world", "test", is_phrase=True)
-        if audio_file:
-            print(f"Audio file created: {audio_file}")
-            cleanup_audio_file(audio_file)
-            print("Audio file cleaned up")
-        else:
-            print("Audio creation failed")
-    except Exception as e:
-        print(f"Audio test skipped (dependency not installed): {e}")
-    """
