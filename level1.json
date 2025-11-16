@@ -1,55 +1,6 @@
 {
   "general": [
     {
-      "word": "Beautiful",
-      "meaning": "Pleasing to look at; attractive",
-      "phrase": "The sunset was beautiful over the calm lake.",
-      "expressions": [
-        "This is beautiful.",
-        "I like beautiful."
-      ],
-      "video": ""
-    },
-    {
-      "word": "Helpful",
-      "meaning": "Giving or ready to give help",
-      "phrase": "My neighbor is always helpful when I need assistance.",
-      "expressions": [
-        "You're very helpful.",
-        "That was really helpful advice."
-      ],
-      "media": ""
-    },
-    {
-      "word": "Creative",
-      "meaning": "Having the ability to make new things",
-      "phrase": "She is very creative with her art projects.",
-      "expressions": [
-        "Be creative with your ideas.",
-        "That's a creative solution."
-      ],
-      "media": ""
-    },
-    {
-      "word": "Careful",
-      "meaning": "Taking care to avoid danger or mistakes",
-      "phrase": "Be careful when crossing the busy street.",
-      "expressions": [
-        "This is careful.",
-        "I like careful."
-      ],
-      "media": ""
-    },
-    {
-      "word": "Popular",
-      "meaning": "Liked by many people",
-      "phrase": "Pizza is a popular food choice among teenagers.",
-      "expressions": [
-        "This is popular.",
-        "I like popular."
-      ]
-    },
-    {
       "word": "Modern",
       "meaning": "Relating to the present time",
       "phrase": "The modern technology makes our lives easier.",
@@ -167,25 +118,6 @@
       ]
     },
     {
-      "word": "성남 탄천",
-      "meaning": "성남의 중심을 통과하는 개천",
-      "expressions": [
-        "탄천은 물이 말고 공기가 깨끗하여 많은 시민이 운동과 휴식을 하기 좋은 물가 공원이예요",
-      ],
-      "phrase": "아린이가 탄천에서 할머니와 놀고 있어요",
-      "media": ""
-    },
-    {
-      "word": "일본 혼슈",
-      "meaning": "일본의 4 개 큰섬 가운데 중앙에 있는 가장 큰섬",
-      "expressions": [
-        "동경은 일본 혼슈에 있어요",
-        "혼슈는 일본에서 제일 큰 섬이예요"
-      ],
-      "phrase": "일본 여행",
-      "media": ""
-    },
-    {
       "word": "Happy",
       "meaning": "Feeling joy and pleasure",
       "phrase": "Children are happy when they play with friends.",
@@ -274,13 +206,6 @@
         "Be fair to everyone.",
         "Fair rules apply equally."
       ]
-    },
-    {
-      "word": "Mommy at Jeju Island in 1970",
-      "meaning": "Beautiful young woman is staring at horizons from a ship",
-      "expressions": [],
-      "phrase": "Beautiful woman",
-      "media": "media/그림1.jpg"
     }
   ],
   "science": [
