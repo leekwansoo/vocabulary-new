@@ -105,7 +105,9 @@ edit_data = st.session_state.get('edit_word_data', {})
 
 if edit_mode:
     st.title("✏️ Edit Word")
-    st.info(f"Editing word: **{edit_data.get('word', '')}**")
+    word_position = edit_data.get('word_position', 0) + 1  # Convert to 1-based index
+    total_words = edit_data.get('total_words', 0)
+    st.info(f"Editing word: **{edit_data.get('word', '')}** (Word {word_position} of {total_words})")
 else:
     st.title("➕ Add New Word")
 
@@ -172,13 +174,13 @@ if st.button(button_label, key=button_key):
         original_file = edit_data.get('original_file', f"level{difficulty_level}.json")
         success = update_word_in_json(word_entry, original_file)
         if success:
-            st.success(f"✅ Word '{word}' updated successfully!")
+            word_position = edit_data.get('word_position', 0)
+            st.success(f"✅ Word '{word}' updated successfully! (Position: {word_position + 1})")
             # Clear edit mode from session state
             st.session_state.edit_mode = False
             st.session_state.edit_word_data = {}
-            # Option to go back to main app
-            if st.button("🔙 Back to Vocabulary"):
-                st.switch_page("app.py")
+            # Automatically go back to main app
+            st.switch_page("app.py")
     else:
         # Add new word
         add_word_to_json(word_entry)
