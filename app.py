@@ -27,6 +27,18 @@ from utils.json_manager import (
 )
 from word_widget import create_word_widget, get_difficulty
 
+# Function to create media directory
+def initialize_media_directory():
+    """Create media directory in the root directory if it doesn't exist"""
+    media_dir = os.path.join(os.path.dirname(__file__), "media")
+    if not os.path.exists(media_dir):
+        os.makedirs(media_dir)
+        print(f"Created media directory at: {media_dir}")
+    return media_dir
+
+# Initialize media directory
+initialize_media_directory()
+
 # Configure the app
 st.set_page_config(
     page_title="Vocabulary Builder - Advanced 1",
