@@ -3,17 +3,15 @@ Complete Vocabulary Converter
 Supports JSON ↔ Excel ↔ CSV conversions
 """
 import os
+import pandas as pd
 import json
 import csv
 
+from datetime import datetime
+
 # Try to import advanced Excel support
-try:
-    import pandas as pd
-    EXCEL_SUPPORT = True
-    print("📊 Excel support enabled (pandas available)")
-except ImportError:
-    EXCEL_SUPPORT = False
-    print("📝 Basic CSV support only (pandas not available)")
+EXCEL_SUPPORT = True
+print("📊 Excel support enabled (pandas available)")
 
 class VocabularyConverter:
     def __init__(self):
