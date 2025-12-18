@@ -12,6 +12,33 @@ def load_json(file_path):
 def save_json(file_path, data):
     with open(file_path, "w") as file:
         json.dump(data, file, indent=4)
+
+def add_words_to_json(word_entry, json_file="level1.json", category="general"):
+    """
+    Add a new word entry to the specified JSON file under the given category.
+    
+    Args:
+        word_entry (dict): Dictionary with word details
+        json_file (str): Path to the JSON file
+        category (str): Category under which to add the word
+    """
+    # Load existing data
+    if os.path.exists(json_file):
+        with open(json_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    else:
+        data = {}
+    
+    # Ensure category exists
+    if category not in data:
+        data[category] = []
+    
+    # Append new word entry
+    data[category].append(word_entry)
+    
+    # Save back to JSON file
+    with open(json_file, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
         
 def delete_word_from_file(word_to_delete, word_file):
     print(f"Deleting word: {word_to_delete} from file: {word_file}")
