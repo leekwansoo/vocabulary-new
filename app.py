@@ -1,3 +1,4 @@
+# app.py
 import streamlit as st 
 import os
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "gemini-chat-414606-505058a474c0.json"
@@ -123,6 +124,7 @@ with col1:
         else:
             st.error(f"❌ Could not load Level {current_level} word pools from JSON file.")
 
+
 with col2:
     # Statistics display
     all_words = load_vocabulary_from_file(word_file)
@@ -167,11 +169,13 @@ if select == "📖 Study Mode":
                 search_word = st.text_input("🔍 Search Word", key="search_word_input")
                 if search_word:
                     # display word with container
-                    filtered_words = [entry for entry in filtered_words if search_word.lower() in entry['word'].lower()]
+                    filtered_words = [entry for entry in all_words if search_word.lower() in entry['word'].lower()]
                     if not filtered_words:
-                        st.warning(f"No words found matching '{search_word}' in {selected_category}")
+                        st.warning(f"No words found matching '{search_word}' in Current_Level {current_level}")
                     else:
-                        st.info(f"📚 Showing {len(filtered_words)} words matching '{search_word}' in {selected_category}")            
+                        st.info(f"📚 Showing {len(filtered_words)} words matching '{search_word}' in Current_Level {current_level}")
+                    # Clear the text input field so it's empty after search
+                    search_word = ""
                     
             
             for word_index, entry in enumerate(filtered_words):
@@ -228,7 +232,7 @@ if select == "📖 Study Mode":
                                 save_learned_words_to_file(updated_learned)
                                 
                                 st.success(f"'{entry['word']}' moved back to main vocabulary!")
-                                st.rerun()  # Refresh the page to update the list
+                                st.session_state["_search_rerun_toggle"] = not st.session_state.get("_search_rerun_toggle", False)
                         else:
                             # Learned button for regular levels
                             if current_level == 1 or current_level == 2 or current_level ==3:
@@ -239,7 +243,7 @@ if select == "📖 Study Mode":
                                 if success:
                                     delete_word_from_file(entry['word'], word_file)
                                     st.success(f"'{entry['word']}' moved to learned words!")
-                                    st.rerun()  # Refresh the page to update the list
+                                    st.session_state["_search_rerun_toggle"] = not st.session_state.get("_search_rerun_toggle", False)
                         
                         st.markdown("<br>", unsafe_allow_html=True)
                         if current_level == 1 or current_level == 2 or current_level ==3:
@@ -270,7 +274,8 @@ if select == "📖 Study Mode":
                         if st.button("Delete Word", key=f"delete_{entry['word']}_{random_num}", help="Delete this word from vocabulary"):
                             delete_word_from_json(entry['word'], word_file)
                             st.success(f"'{entry['word']}' has been deleted from the vocabulary.")
-                            st.rerun()  # Refresh the page to update the list
+                            st.session_state["_search_rerun_toggle"] = not st.session_state.get("_search_rerun_toggle", False)
                                     
                 
                 
+
